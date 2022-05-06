@@ -1,0 +1,41 @@
+
+
+DROP DATABASE IF EXISTS db_app_icaro;
+CREATE DATABASE db_app_icaro;
+USE db_app_icaro;
+
+CREATE TABLE user 
+(id INT AUTO_INCREMENT NOT NULL ,
+firstname VARCHAR (255) NOT NULL, 
+lastname VARCHAR (255) NOT NULL,
+username VARCHAR (255) NOT NULL,
+password VARCHAR (255) NOT NULL,
+country VARCHAR (255) NOT NULL,
+city VARCHAR (255) NOT NULL,
+created_at DATETIME NOT NULL, 
+updated_at DATETIME NOT NULL,
+
+PRIMARY KEY (id) 
+); 
+
+
+
+
+CREATE TABLE messages 
+(
+id INT AUTO_INCREMENT NOT NULL,
+message VARCHAR (144) NOT NULL,
+id_user INT NOT NULL,
+id_receiver INT NOT NULL,
+isRead TINYINT(1) NOT NULL,
+created_at DATETIME NOT NULL,
+updated_at DATETIME NOT NULL,
+
+
+PRIMARY KEY  (id),
+
+FOREIGN KEY (id_user) REFERENCES user (id)
+ON DELETE CASCADE ON UPDATE CASCADE,
+
+FOREIGN KEY (id_receiver) 
+REFERENCES user (id) ON UPDATE CASCADE);
